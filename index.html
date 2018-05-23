@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <div class="app">
+    <div class="app" onclick="onDeviceReady()">
         <h1>IEN Georgia</h1>
         <div id="deviceready" class="blink">
             <p class="event listening">Connecting to Internet</p>
@@ -58,7 +58,7 @@
 		/* <ByBehnam> */
 		document.addEventListener("deviceready", onDeviceReady, false);
 		function onDeviceReady() {
-			window.open('http://ien.ge', '_self', 'location=no');
+			//window.open('http://ien.ge', '_self', 'location=no');
 		}
 		onDeviceReady();
 		/* </ByBehnam> */
