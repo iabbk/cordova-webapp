@@ -107,7 +107,7 @@
 	<preference name="stay-in-webview" value="true" />
 	<!--<access origin="*" />-->
 	<access origin="*" browserOnly="true" subdomains="true" />
-	<allow-navigation href="https://google.com/*" />
+	<allow-navigation href="http://ien.ge/*" />
 	<preference name="permissions"                value="none"/>
     <preference name="target-device"              value="universal"/>
     <preference name="fullscreen"                 value="true"/>
