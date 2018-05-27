@@ -46,8 +46,8 @@
     <div class="app">
         <h1>IEN Georgia</h1>
         <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Internet</p>
-            <p class="event received" onclick="openHomePage()">Connection is Ready .::. اینجا را لمس کنید</p>
+            <p class="event listening" onclick="checkConnectionAndAction()">راه اندازی و بررسی ارتباط با اینترنت ...<br />بررسی مجدد</p>
+            <p class="event received" onclick="checkConnectionAndAction()">Connection is Ready .::. اینجا را لمس کنید</p>
         </div>
 		<div id="loadingbox"><img src="img/loading.gif" width="70" height="70" /></div>
     </div>
@@ -66,7 +66,7 @@
 		*/
 		document.addEventListener("deviceready", onDeviceReady, false);
 		function onDeviceReady() {
-			checkConnection();
+			checkConnectionAndAction();
 		}
 		
 		//document.addEventListener('deviceready', openHomePage, false)
@@ -86,7 +86,27 @@
 			states[Connection.CELL_3G]  = 'Cell 3G connection';
 			states[Connection.CELL_4G]  = 'Cell 4G connection';
 			states[Connection.NONE]     = 'No network connection';
-			alert('Connection type: ' + states[networkState]);
+			//alert('Connection type: ' + states[networkState]);
+			
+			if(states[networkState]!='No network connection') return true;
+			else return false;
+		}
+		
+		function checkConnectionAndAction(){
+		
+			var parentElement = document.getElementById('deviceready');
+			var listeningElement = parentElement.querySelector('.listening');
+			var receivedElement = parentElement.querySelector('.received');
+		
+			if ( checkConnection() ){
+				listeningElement.setAttribute('style', 'display:none;');
+				receivedElement.setAttribute('style', 'display:block;');
+				openHomePage();
+			}else{
+				listeningElement.setAttribute('style', 'display:block;');
+				receivedElement.setAttribute('style', 'display:none;');
+			}
+			
 		}
 		/* </ByBehnam> */
     </script>
