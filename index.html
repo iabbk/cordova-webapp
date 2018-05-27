@@ -93,7 +93,6 @@
 		}
 		
 		function checkConnectionAndAction(){
-		
 			var parentElement = document.getElementById('deviceready');
 			var listeningElement = parentElement.querySelector('.listening');
 			var receivedElement = parentElement.querySelector('.received');
@@ -105,8 +104,8 @@
 			}else{
 				listeningElement.setAttribute('style', 'display:block;');
 				receivedElement.setAttribute('style', 'display:none;');
+				navigator.notification.alert('ارتباط اینترنت برقرار نیست! دوباره تلاش کنید.');
 			}
-			
 		}
 		/* </ByBehnam> */
     </script>
