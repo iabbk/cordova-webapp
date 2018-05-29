@@ -129,9 +129,8 @@ h1 {
 
 #loadingbox img {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 10%;
+    left: 30%;
 }
 
 
