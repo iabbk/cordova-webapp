@@ -116,24 +116,30 @@ h1 {
 
 
 
-#bodycontainer {
-	background-image: url('../img/loading-bg.png');
-	background-size: 100% 100%;
-    position: fixed;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
+html, body {
+	padding: 0;
+	margin: 0;
 }
 
 .app {
-	background: transparent;
-	top: auto;
+	background-image: url('../img/loading-bg.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center top;
+	top: 0;
 	left: 0;
-	bottom: 10%;
 	width: 100%;
+	height: 100%;
 	padding: 0;
 	margin: 0;
+}
+
+#headerimg {
+	margin: 5% 0 0;
+}
+
+#headerimg img {
+	max-width: 250px;
 }
 
 #loadingbox {
@@ -147,6 +153,8 @@ h1 {
     /*background-color: rgba(255,255,255,0.8);*/
 	background-image: url('../img/loading-bg.png');
 	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center top;
 }
 
 #loadingbox img {
