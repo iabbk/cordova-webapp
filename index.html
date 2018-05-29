@@ -76,7 +76,9 @@
 			
 			//cordova.InAppBrowser.open(url, '_self', 'location=no');
 			
-			var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes');
+			//var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes');
+			var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve');
+			//var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,hidden=yes,toolbar=no,enableViewportScale=yes,transitionstyle=crossdissolve');
 			ref.addEventListener('loadstop', function(event) { ref.show();});
 		}
 		
