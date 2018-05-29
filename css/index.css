@@ -117,11 +117,15 @@ h1 {
 #loadingbox {
     position: fixed;
     left: 0;
-    background-color: rgba(255,255,255,0.8);
     width: 100%;
     height: 100%;
     top: 0;
 	display: none;
+	
+    /*background-color: rgba(255,255,255,0.8);*/
+	background-image: url('../img/loading-bg.png');
+	background-size: 100% 100%;
+	
 }
 
 #loadingbox img {
