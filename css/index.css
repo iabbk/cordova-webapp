@@ -114,6 +114,23 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+
+
+body {
+	background-image: url('../img/loading-bg.png');
+	background-size: 100% 100%;
+}
+
+.app {
+	background: transparent;
+	top: auto;
+	left: 0;
+	bottom: 10%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
 #loadingbox {
     position: fixed;
     left: 0;
