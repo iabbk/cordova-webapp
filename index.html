@@ -73,7 +73,11 @@
 		function openHomePage() {
 			document.getElementById('loadingbox').style.display = 'block';
 			var url = 'http://ien.ge' // change to whatever you want
-			cordova.InAppBrowser.open(url, '_self', 'location=no');
+			
+			//cordova.InAppBrowser.open(url, '_self', 'location=no');
+			
+			var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes');
+			ref.addEventListener('loadstop', function(event) { ref.show();});
 		}
 		
 		function checkConnection() {
