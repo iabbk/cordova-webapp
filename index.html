@@ -55,7 +55,7 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-		
+
 		/* <ByBehnam> */
 		/*
 		document.addEventListener("deviceready", onDeviceReady, false);
@@ -67,21 +67,25 @@
 		document.addEventListener("deviceready", onDeviceReady, false);
 		function onDeviceReady() {
 			checkConnectionAndAction();
+
+      var ref2 = cordova.InAppBrowser;
+      ref2.addEventListener('loadstart', function(event) { ref2.hide();});
+      ref2.addEventListener('loadstop', function(event) { ref2.show();});
 		}
-		
+
 		//document.addEventListener('deviceready', openHomePage, false)
 		function openHomePage() {
 			document.getElementById('loadingbox').style.display = 'block';
 			var url = 'http://ien.ge' // change to whatever you want
-			
+
 			//cordova.InAppBrowser.open(url, '_self', 'location=no');
-			
+
 			//var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes');
 			var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve');
 			//var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,hidden=yes,toolbar=no,enableViewportScale=yes,transitionstyle=crossdissolve');
 			ref.addEventListener('loadstop', function(event) { ref.show();});
 		}
-		
+
 		function checkConnection() {
 			var networkState = navigator.network.connection.type;
 			var states = {};
@@ -93,16 +97,16 @@
 			states[Connection.CELL_4G]  = 'Cell 4G connection';
 			states[Connection.NONE]     = 'No network connection';
 			//alert('Connection type: ' + states[networkState]);
-			
+
 			if(states[networkState]!='No network connection') return true;
 			else return false;
 		}
-		
+
 		function checkConnectionAndAction(){
 			var parentElement = document.getElementById('deviceready');
 			var listeningElement = parentElement.querySelector('.listening');
 			var receivedElement = parentElement.querySelector('.received');
-		
+
 			if ( checkConnection() ){
 				listeningElement.setAttribute('style', 'display:none;');
 				receivedElement.setAttribute('style', 'display:block;');
