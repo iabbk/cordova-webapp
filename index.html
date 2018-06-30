@@ -97,8 +97,8 @@
 			var options = 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve';
 			var options = 'location=no';
 
-			var ref = cordova.InAppBrowser.open(url, target, options);
-			//var ref = cordova.InAppBrowser.open('menu.html', target, options);
+			//var ref = cordova.InAppBrowser.open(url, target, options);
+			var ref = cordova.InAppBrowser.open('menu.html', target, options);
 			ref.addEventListener('loadstop', function(event) {
 				ref.show();
 				/*
