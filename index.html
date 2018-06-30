@@ -99,7 +99,7 @@
 
 			//var ref = cordova.InAppBrowser.open(url, target, options);
 			var ref = cordova.InAppBrowser.open('menu.html', target, options);
-			ref.addEventListener('loadstop', function(event) {
+			/*ref.addEventListener('loadstop', function(event) {
 				ref.show();
 				ref.executeScript({
 					code: "document.body.innerHTML += '"
@@ -112,7 +112,7 @@
 					+"';"
 					+"var cssId = 'myCss';if (!document.getElementById(cssId)) {var head = document.getElementsByTagName('head')[0];var link = document.createElement('link');link.id = cssId;link.rel = 'stylesheet';link.type = 'text/css';link.href = 'css/menu.css';link.media = 'all';head.appendChild(link);}function openNav() {document.getElementById(\"mySidenav\").style.width = \"250px\";document.getElementById(\"main\").style.marginLeft = \"250px\";}function closeNav() {document.getElementById(\"mySidenav\").style.width = \"0\";document.getElementById(\"main\").style.marginLeft = \"0\";}"
 				}); 
-			});
+			});*/
 		}
 
 		function checkConnection() {
