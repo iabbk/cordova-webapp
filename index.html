@@ -68,9 +68,9 @@
 		function onDeviceReady() {
 			checkConnectionAndAction();
 
-      var ref2 = cordova.InAppBrowser;
+      /*var ref2 = cordova.InAppBrowser;
       ref2.addEventListener('loadstart', function(event) { ref2.hide();});
-      ref2.addEventListener('loadstop', function(event) { ref2.show();});
+      ref2.addEventListener('loadstop', function(event) { ref2.show();});*/
 		}
 
 		//document.addEventListener('deviceready', openHomePage, false)
@@ -80,8 +80,12 @@
 
 			//cordova.InAppBrowser.open(url, '_self', 'location=no');
 
+      var target = '_blank';
+      //var options = 'location=yes,hidden=yes';
+      var options = 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve';
+
 			//var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes');
-			var ref = cordova.InAppBrowser.open(url, '_blank', 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve');
+			var ref = cordova.InAppBrowser.open(url, target, options);
 			//var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no,hidden=yes,toolbar=no,enableViewportScale=yes,transitionstyle=crossdissolve');
 			ref.addEventListener('loadstop', function(event) { ref.show();});
 		}
