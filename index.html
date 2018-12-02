@@ -78,6 +78,20 @@
 		*/
 		document.addEventListener("deviceready", onDeviceReady, false);
 		function onDeviceReady() {
+			
+			// Exit on back button
+			document.addEventListener("backbutton", function(e){
+				e.preventDefault(); // بدون شرط
+				navigator.app.exitApp(); // بدون شرط
+				/*if($.mobile.activePage.is('#homepage')){
+					e.preventDefault();
+					navigator.app.exitApp();
+				}
+				else {
+					navigator.app.backHistory();
+				}*/
+			}, false);
+			
 			checkConnectionAndAction();
 
       /*var ref2 = cordova.InAppBrowser;
@@ -132,19 +146,21 @@
 		}
 
 		function checkConnectionAndAction(){
-			var parentElement = document.getElementById('deviceready');
-			var listeningElement = parentElement.querySelector('.listening');
-			var receivedElement = parentElement.querySelector('.received');
+			setTimeout(function(){ // Delay on start
+				var parentElement = document.getElementById('deviceready');
+				var listeningElement = parentElement.querySelector('.listening');
+				var receivedElement = parentElement.querySelector('.received');
 
-			if ( checkConnection() ){
-				listeningElement.setAttribute('style', 'display:none;');
-				receivedElement.setAttribute('style', 'display:block;');
-				openHomePage();
-			}else{
-				listeningElement.setAttribute('style', 'display:block;');
-				receivedElement.setAttribute('style', 'display:none;');
-				navigator.notification.alert('ارتباط اینترنت برقرار نیست! دوباره تلاش کنید.');
-			}
+				if ( checkConnection() ){
+					listeningElement.setAttribute('style', 'display:none;');
+					receivedElement.setAttribute('style', 'display:block;');
+					openHomePage();
+				}else{
+					listeningElement.setAttribute('style', 'display:block;');
+					receivedElement.setAttribute('style', 'display:none;');
+					navigator.notification.alert('ارتباط اینترنت برقرار نیست! دوباره تلاش کنید.');
+				}
+			}, 3000);
 		}
 		
 		
