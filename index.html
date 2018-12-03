@@ -105,6 +105,7 @@
 			document.getElementById('loadingbox').style.display = 'block';
 			var url = 'http://booogh.ir'; // change to whatever you want
 
+			/*
 			//cordova.InAppBrowser.open(url, '_self', 'location=no');
 
 			var target = '_blank';
@@ -113,6 +114,11 @@
 			var options = 'location=no';
 
 			var ref = cordova.InAppBrowser.open(url, target, options); /* اینجا را تغییر دادم 1 مهر 97 */
+			*/
+			var options = "location=yes,hidden=yes";
+			inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+			addEventListener('loadstop', loadStopCallBack);
+			
 			//var ref = cordova.InAppBrowser.open('menu.html', target, options); /* اینجا را تغییر دادم 1 مهر 97 */
 			/*ref.addEventListener('loadstop', function(event) {
 				ref.show();
@@ -132,6 +138,9 @@
 			/*WebSettings settings = inAppWebView.getSettings();
 			settings.setBuiltInZoomControls(true); // enable built-in zoom mechanisms
 			settings.setDisplayZoomControls(false); // disable WebView's zoom controls display*/
+		}
+		function loadStopCallBack() {
+		    inAppBrowserRef.show();
 		}
 
 		function checkConnection() {
