@@ -175,3 +175,13 @@ html, body {
 	right: auto;
 }
 
+.btn-main {
+	padding: 10px 20px;
+	background-color: #008CBA;
+	color: white;
+}
+.btn-exit {
+	padding: 10px 20px;
+	background-color: #e7e7e7;
+	color: black;
+}
