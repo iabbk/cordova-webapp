@@ -189,6 +189,26 @@
 			document.getElementById("mySidenav").style.width = "0";
 			document.getElementById("main").style.marginLeft = "0";
 		}
+	    
+		function exitApp() {
+			if (cordova.plugins) {
+				alert(123);
+				cordova.plugins.exit();
+			}
+			else if (typeof cordova !== 'undefined') {
+				if (navigator.App) {
+					navigator.App.exitApp();
+				}
+				else if (navigator.device) {
+					navigator.device.exitApp();
+				}
+			} else {
+				window.close();
+				$timeout(function () {
+					self.showCloseMessage = true;  //since the browser can't be closed (otherwise this line would never run), ask the user to close the window
+				});
+			}
+		}
 		/* </ByBehnam> */
     </script>
 </body>
