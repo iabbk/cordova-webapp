@@ -38,7 +38,6 @@ body {
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
-    font-size:5vh;
     height:100%;
     margin:0px;
     padding:0px;
@@ -177,14 +176,16 @@ html, body {
 }
 
 .btn-main {
-	width: 80%;
-	padding: 10px 20px;
 	background-color: #008CBA;
 	color: white;
 }
 .btn-exit {
-	width: 80%;
-	padding: 10px 20px;
 	background-color: #e7e7e7;
 	color: black;
+}
+.btn-main, .btn-exit {
+	width: 80%;
+	padding: 10px 20px;
+	font-size:7vh;
+	display: block;
 }
