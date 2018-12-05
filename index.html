@@ -62,7 +62,12 @@
 			<p class="event listening" onclick="checkConnectionAndAction()">راه اندازی و بررسی ارتباط با اینترنت ...<br />بررسی مجدد</p>
 			<p class="event received" onclick="checkConnectionAndAction()">Connection is Ready .::. اینجا را لمس کنید</p>
 		</div>
-		<div id="loadingbox"><div class="headerimg"><img src="img/loading-title.png" width="70%" height="auto" /></div><img src="img/loading-travel.gif" width="40%" height="auto" /></div>
+		<div id="loadingbox">
+			<div class="headerimg"><img src="img/loading-title.png" width="70%" height="auto" /></div>
+			<!--<img src="img/loading-travel.gif" width="40%" height="auto" />-->
+			<button class="btn-main" onclick="checkConnectionAndAction()">صفحه اصلی بووق</button>
+			<button class="btn-exit" onclick="navigator.app.exitApp()">خروج از برنامه</button>
+		</div>
 		<input type="hidden" id="firstload" value="1" />
 	</div>
     <script type="text/javascript" src="cordova.js"></script>
