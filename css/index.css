@@ -176,11 +176,13 @@ html, body {
 }
 
 .btn-main {
+	width: 80%;
 	padding: 10px 20px;
 	background-color: #008CBA;
 	color: white;
 }
 .btn-exit {
+	width: 80%;
 	padding: 10px 20px;
 	background-color: #e7e7e7;
 	color: black;
