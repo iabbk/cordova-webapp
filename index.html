@@ -63,153 +63,160 @@
 			<p class="event received" onclick="checkConnectionAndAction()">Connection is Ready .::. اینجا را لمس کنید</p>
 		</div>
 		<div id="loadingbox"><div class="headerimg"><img src="img/loading-title.png" width="70%" height="auto" /></div><img src="img/loading-travel.gif" width="40%" height="auto" /></div>
+		<input type="hidden" id="firstload" value="1" />
 	</div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-
-		/* <ByBehnam> */
-		/*
-		document.addEventListener("deviceready", onDeviceReady, false);
-		function onDeviceReady() {
-			window.open('http://booogh.ir', '_self', 'location=no');
+	window.onpageshow = function(){
+		if(document.getElementById("firstload").value=="0"){
+			navigator.app.exitApp();
+		} else {
+			document.getElementById("firstload").value = "0"
 		}
-		onDeviceReady();
+	}
+
+	/* <ByBehnam> */
+	/*
+	document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() {
+		window.open('http://booogh.ir', '_self', 'location=no');
+	}
+	onDeviceReady();
+	*/
+	document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() {
+
+		// Exit on back button
+		/*document.addEventListener("backbutton", function(e){
+			e.preventDefault(); // بدون شرط
+			navigator.app.exitApp(); // بدون شرط
+			//if($.mobile.activePage.is('#homepage')) {
+			//	e.preventDefault();
+			//	navigator.app.exitApp();
+			//} else {
+			//	navigator.app.backHistory();
+			//}
+		}, false);*/
+
+		checkConnectionAndAction();
+
+		/*var ref2 = cordova.InAppBrowser;
+		ref2.addEventListener('loadstart', function(event) { ref2.hide();});
+		ref2.addEventListener('loadstop', function(event) { ref2.show();});*/
+	}
+
+	//document.addEventListener('deviceready', openHomePage, false)
+	function openHomePage() {
+		document.getElementById('loadingbox').style.display = 'block';
+		var url = 'http://booogh.ir'; // change to whatever you want
+
+
+		//cordova.InAppBrowser.open(url, '_self', 'location=no');
+
+		var target = '_blank';
+		//var options = 'location=yes,hidden=yes';
+		var options = 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve';
+		var options = 'location=no';
+
+		var ref = cordova.InAppBrowser.open(url, target, options); // اینجا را تغییر دادم 1 مهر 97
+
+		/* // Show after loaded
+		var options = "location=yes,hidden=yes";
+		inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+		addEventListener('loadstop', loadStopCallBack);
 		*/
-		document.addEventListener("deviceready", onDeviceReady, false);
-		function onDeviceReady() {
-			
-			// Exit on back button
-			document.addEventListener("backbutton", function(e){
-				e.preventDefault(); // بدون شرط
-				navigator.app.exitApp(); // بدون شرط
-				/*if($.mobile.activePage.is('#homepage')){
-					e.preventDefault();
-					navigator.app.exitApp();
-				}
-				else {
-					navigator.app.backHistory();
-				}*/
-			}, false);
-			
-			checkConnectionAndAction();
-			
-			/*var ref2 = cordova.InAppBrowser;
-			ref2.addEventListener('loadstart', function(event) { ref2.hide();});
-			ref2.addEventListener('loadstop', function(event) { ref2.show();});*/
-		}
 
-		//document.addEventListener('deviceready', openHomePage, false)
-		function openHomePage() {
-			document.getElementById('loadingbox').style.display = 'block';
-			var url = 'http://booogh.ir'; // change to whatever you want
+		//var ref = cordova.InAppBrowser.open('menu.html', target, options); /* اینجا را تغییر دادم 1 مهر 97 */
+		/*ref.addEventListener('loadstop', function(event) {
+			ref.show();
+			ref.executeScript({
+				code: "document.body.innerHTML += '"
+				+  "<div id=\"mySidenav\" class=\"sidenav\">"
+				+    " <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeNav()\">×</a>"
+				+    " <a href=\"#\">About</a> <a href=\"#\">Services</a> <a href=\"#\">Clients</a>"
+				+    " <a href=\"#\">Contact</a>"
+				+  "</div>"
+				+  "<span class=\"sidenavopen\" onclick=\"openNav()\">☰ open</span>"
+				+"';"
+				+"var cssId = 'myCss';if (!document.getElementById(cssId)) {var head = document.getElementsByTagName('head')[0];var link = document.createElement('link');link.id = cssId;link.rel = 'stylesheet';link.type = 'text/css';link.href = 'css/menu.css';link.media = 'all';head.appendChild(link);}function openNav() {document.getElementById(\"mySidenav\").style.width = \"250px\";document.getElementById(\"main\").style.marginLeft = \"250px\";}function closeNav() {document.getElementById(\"mySidenav\").style.width = \"0\";document.getElementById(\"main\").style.marginLeft = \"0\";}"
+			}); 
+		});*/
 
-			
-			//cordova.InAppBrowser.open(url, '_self', 'location=no');
+		/*WebSettings settings = inAppWebView.getSettings();
+		settings.setBuiltInZoomControls(true); // enable built-in zoom mechanisms
+		settings.setDisplayZoomControls(false); // disable WebView's zoom controls display*/
+	}
+	function loadStopCallBack() {
+	    inAppBrowserRef.show();
+	}
 
-			var target = '_blank';
-			//var options = 'location=yes,hidden=yes';
-			var options = 'disallowoverscroll=yes,toolbar=no,location=no,zoom=no,hidden=yes,enableViewportScale=yes,transitionstyle=crossdissolve';
-			var options = 'location=no';
+	function checkConnection() {
+		var networkState = navigator.network.connection.type;
+		var states = {};
+		states[Connection.UNKNOWN]  = 'Unknown connection';
+		states[Connection.ETHERNET] = 'Ethernet connection';
+		states[Connection.WIFI]     = 'WiFi connection';
+		states[Connection.CELL_2G]  = 'Cell 2G connection';
+		states[Connection.CELL_3G]  = 'Cell 3G connection';
+		states[Connection.CELL_4G]  = 'Cell 4G connection';
+		states[Connection.NONE]     = 'No network connection';
+		//alert('Connection type: ' + states[networkState]);
 
-			var ref = cordova.InAppBrowser.open(url, target, options); // اینجا را تغییر دادم 1 مهر 97
-			
-			/* // Show after loaded
-			var options = "location=yes,hidden=yes";
-			inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
-			addEventListener('loadstop', loadStopCallBack);
-			*/
-			
-			//var ref = cordova.InAppBrowser.open('menu.html', target, options); /* اینجا را تغییر دادم 1 مهر 97 */
-			/*ref.addEventListener('loadstop', function(event) {
-				ref.show();
-				ref.executeScript({
-					code: "document.body.innerHTML += '"
-					+  "<div id=\"mySidenav\" class=\"sidenav\">"
-					+    " <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeNav()\">×</a>"
-					+    " <a href=\"#\">About</a> <a href=\"#\">Services</a> <a href=\"#\">Clients</a>"
-					+    " <a href=\"#\">Contact</a>"
-					+  "</div>"
-					+  "<span class=\"sidenavopen\" onclick=\"openNav()\">☰ open</span>"
-					+"';"
-					+"var cssId = 'myCss';if (!document.getElementById(cssId)) {var head = document.getElementsByTagName('head')[0];var link = document.createElement('link');link.id = cssId;link.rel = 'stylesheet';link.type = 'text/css';link.href = 'css/menu.css';link.media = 'all';head.appendChild(link);}function openNav() {document.getElementById(\"mySidenav\").style.width = \"250px\";document.getElementById(\"main\").style.marginLeft = \"250px\";}function closeNav() {document.getElementById(\"mySidenav\").style.width = \"0\";document.getElementById(\"main\").style.marginLeft = \"0\";}"
-				}); 
-			});*/
-			
-			/*WebSettings settings = inAppWebView.getSettings();
-			settings.setBuiltInZoomControls(true); // enable built-in zoom mechanisms
-			settings.setDisplayZoomControls(false); // disable WebView's zoom controls display*/
-		}
-		function loadStopCallBack() {
-		    inAppBrowserRef.show();
-		}
+		if(states[networkState]!='No network connection') return true;
+		else return false;
+	}
 
-		function checkConnection() {
-			var networkState = navigator.network.connection.type;
-			var states = {};
-			states[Connection.UNKNOWN]  = 'Unknown connection';
-			states[Connection.ETHERNET] = 'Ethernet connection';
-			states[Connection.WIFI]     = 'WiFi connection';
-			states[Connection.CELL_2G]  = 'Cell 2G connection';
-			states[Connection.CELL_3G]  = 'Cell 3G connection';
-			states[Connection.CELL_4G]  = 'Cell 4G connection';
-			states[Connection.NONE]     = 'No network connection';
-			//alert('Connection type: ' + states[networkState]);
+	function checkConnectionAndAction(){
+		setTimeout(function(){ // Delay on start
+			var parentElement = document.getElementById('deviceready');
+			var listeningElement = parentElement.querySelector('.listening');
+			var receivedElement = parentElement.querySelector('.received');
 
-			if(states[networkState]!='No network connection') return true;
-			else return false;
-		}
-
-		function checkConnectionAndAction(){
-			setTimeout(function(){ // Delay on start
-				var parentElement = document.getElementById('deviceready');
-				var listeningElement = parentElement.querySelector('.listening');
-				var receivedElement = parentElement.querySelector('.received');
-
-				if ( checkConnection() ){
-					listeningElement.setAttribute('style', 'display:none;');
-					receivedElement.setAttribute('style', 'display:block;');
-					openHomePage();
-				}else{
-					listeningElement.setAttribute('style', 'display:block;');
-					receivedElement.setAttribute('style', 'display:none;');
-					navigator.notification.alert('ارتباط اینترنت برقرار نیست! دوباره تلاش کنید.');
-				}
-			}, 3000);
-		}
-		
-		
-		/* js/menu.js */
-		function openNav() {
-			document.getElementById("mySidenav").style.width = "250px";
-			document.getElementById("main").style.marginLeft = "250px";
-		}
-		function closeNav() {
-			document.getElementById("mySidenav").style.width = "0";
-			document.getElementById("main").style.marginLeft = "0";
-		}
-	    
-		/*function exitApp() {
-			if (cordova.plugins) {
-				alert(123);
-				cordova.plugins.exit();
+			if ( checkConnection() ){
+				listeningElement.setAttribute('style', 'display:none;');
+				receivedElement.setAttribute('style', 'display:block;');
+				openHomePage();
+			}else{
+				listeningElement.setAttribute('style', 'display:block;');
+				receivedElement.setAttribute('style', 'display:none;');
+				navigator.notification.alert('ارتباط اینترنت برقرار نیست! دوباره تلاش کنید.');
 			}
-			else if (typeof cordova !== 'undefined') {
-				if (navigator.App) {
-					navigator.App.exitApp();
-				}
-				else if (navigator.device) {
-					navigator.device.exitApp();
-				}
-			} else {
-				window.close();
-				$timeout(function () {
-					self.showCloseMessage = true;  //since the browser can't be closed (otherwise this line would never run), ask the user to close the window
-				});
+		}, 3000);
+	}
+
+
+	/* js/menu.js */
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+		document.getElementById("main").style.marginLeft = "250px";
+	}
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+		document.getElementById("main").style.marginLeft = "0";
+	}
+
+	/*function exitApp() {
+		if (cordova.plugins) {
+			alert(123);
+			cordova.plugins.exit();
+		}
+		else if (typeof cordova !== 'undefined') {
+			if (navigator.App) {
+				navigator.App.exitApp();
 			}
-		}*/
-		/* </ByBehnam> */
+			else if (navigator.device) {
+				navigator.device.exitApp();
+			}
+		} else {
+			window.close();
+			$timeout(function () {
+				self.showCloseMessage = true;  //since the browser can't be closed (otherwise this line would never run), ask the user to close the window
+			});
+		}
+	}*/
+	/* </ByBehnam> */
     </script>
 </body>
 
