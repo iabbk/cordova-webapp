@@ -109,8 +109,9 @@
 	}
 	
 	function onBackKeyDown() {
-		alert("Exit");
-		navigator.app.exitApp();
+		if(confirm("آیا قصد خروج دارید؟")){
+			navigator.app.exitApp();
+		}
 	}
 
 	//document.addEventListener('deviceready', openHomePage, false)
