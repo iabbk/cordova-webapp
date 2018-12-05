@@ -69,13 +69,13 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
-	window.onpageshow = function(){
+	/*window.onpageshow = function(){
 		if(document.getElementById("firstload").value=="0"){
 			navigator.app.exitApp();
 		} else {
 			document.getElementById("firstload").value = "0"
 		}
-	}
+	}*/
 
 	/* <ByBehnam> */
 	/*
@@ -99,12 +99,17 @@
 			//	navigator.app.backHistory();
 			//}
 		}, false);*/
+		document.addEventListener("backbutton", onBackKeyDown, false);
 
 		checkConnectionAndAction();
 
 		/*var ref2 = cordova.InAppBrowser;
 		ref2.addEventListener('loadstart', function(event) { ref2.hide();});
 		ref2.addEventListener('loadstop', function(event) { ref2.show();});*/
+	}
+	
+	function onBackKeyDown() {
+		navigator.app.exitApp();
 	}
 
 	//document.addEventListener('deviceready', openHomePage, false)
