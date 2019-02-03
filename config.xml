@@ -12,7 +12,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="OverrideUserAgent" value="Mozilla/5.0 BoooghApp" />
-    <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
     <plugin spec="https://github.com/jverlee/cordova-plugin-inappbrowser-camera.git" version="1.1.0" source="git" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
